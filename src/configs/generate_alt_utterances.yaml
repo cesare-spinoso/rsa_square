@@ -1,0 +1,20 @@
+run_type: generate_alternative_utterances
+dataset_name: prag_mega_test_split
+dataset_path: src/data/prag_mega/ScenariosCombinedDiversified.csv
+gen_llm: null
+seed: 42
+generation_kwargs:
+  max_new_tokens: 100
+  num_return_sequences: 50
+  do_sample: True
+  temperature: 1.0
+use_scenario_as_prompt: True
+log_experiment: True
+keys_to_log:
+  - run_type
+  - dataset_path
+  - gen_llm
+  - generation_kwargs
+  - use_scenario_as_prompt
+output_dir: camera_ready_outputs/prag_mega_plus_exps/llama_8b
+output_file: alternative_utterances.jsonl

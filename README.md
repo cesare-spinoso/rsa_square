@@ -25,7 +25,14 @@ ds = load_dataset("cesare-spinoso/PragMegaPlus")
 
 **Repository installation:** If you want to run our code, follow the steps below which install the repository.
 
-0. Install the repository. We use [Git-LFS](https://git-lfs.com/) to store our experimental data and results (which you might need, not sure: https://github.com/git-lfs/git-lfs?tab=readme-ov-file#installing)
+0. Install the repository. We use [Git-LFS](https://git-lfs.com/) to store our experimental data and results. As a result, when you issue the `git clone` command, it **will not automatically download the experimental data and results**. To do so, you need to use `git clone` and `git lfs` together:
+
+```
+git clone https://github.com/cesare-spinoso/rsa_square.git
+git lfs pull -I "data/**"
+```
+
+where the second line pulls the files from the LFS storage into the `data/` folder.
 
 1. Create and activate a `conda` environment using `python 3.11`
 

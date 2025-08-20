@@ -172,3 +172,18 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Custom
+settings.json
+src/hidden.py
+hidden.py
+scrap_work/
+outputs/
+cache/
+launch.json
+*.log
+logs/*
+bash_scripts/*
+multirun/
+slurm_outputs/*
+slurm_*

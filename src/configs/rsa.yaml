@@ -1,0 +1,51 @@
+hydra: # this actually works
+  sweep:
+    dir: /home/mila/c/cesare.spinoso/SarcRSA/datasets/hydra
+    subdir: ${hydra.job.override_dirname}
+  output_subdir: ${hydra.sweep.dir}/${hydra.sweep.subdir}
+run_type: run_all_rsa_versions
+dataset_name: prag_mega
+dataset_path: src/data/prag_mega/ScenariosCombinedDiversified.csv
+alt_utterances_path: null
+llm_probs_path: null
+seed: 42
+rsa_runs:
+  - run_type: llm_rsa
+    llm_rsa:
+      alpha: 1
+      prior_meaning: P_m_c
+      prior_utterance: P_u_c
+      n: 1
+  - run_type: rsa_two
+    rsa_two:
+      run_name: p_r_c_u
+      alpha: 1
+      rhetorical_strategies:
+        - "Ironic"
+        - "Sincere"
+      prior_meaning: P_m_c
+      prior_utterance: P_u_c
+      prior_rs: P_r_c_u
+      n: 1
+  - run_type: rsa_two
+    rsa_two:
+      run_name: indicator_r_c_u
+      alpha: 1
+      rhetorical_strategies:
+        - "Ironic"
+        - "Sincere"
+      prior_meaning: P_m_c
+      prior_utterance: P_u_c
+      prior_rs: indicator_P_r_c_u
+      n: 1
+  - run_type: rsc_rsa
+    rsc_rsa:
+      embedding_model: all-mpnet-base-v2
+      number_of_clusters: 4
+      f_rmuc_formula: "(mean_{i in cluster} PLLM(m|c,ui) / |cluster|) / PLLM(m|c,u)"
+      alpha: 1
+      prior_meaning: P_m_c
+      prior_utterance: P_u_c
+      prior_rs: P_r_c_u
+      n: 1
+output_dir: camera_ready_outputs/prag_mega_plus_exps/rsa_runs

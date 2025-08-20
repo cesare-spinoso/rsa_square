@@ -1,0 +1,91 @@
+hydra: # TODO: Replace with $HOME variable
+  sweep:
+    dir: /home/mila/c/cesare.spinoso/SarcRSA/datasets/hydra
+    subdir: ${hydra.job.override_dirname}
+  output_subdir: ${hydra.sweep.dir}/${hydra.sweep.subdir}
+run_type: generate_llm_prompt_probs
+dataset_name: prag_mega_test_split
+dataset_path: src/data/prag_mega/ScenariosCombinedDiversified.csv
+is_context_w_something: True # See dataset README for more details
+alternative_utterances_path: null
+prob_llm: null
+batch_size: 128
+seed: 42
+probs_to_compute:
+  PLLM(m|c):
+    num_order_shuffles: 10
+    prompt_template:
+      "Task: You will read short stories that describe everyday situations\
+      \ and which finish with a character saying something. Your task is to decide,\
+      \ given the situation, what meaning the character is most likely conveying.\
+      \ Each story will be followed by 4 possible meaning interpretations listed from\
+      \ 1 to 4. Read each story and choose the number corresponding to the most likely\
+      \ meaning. You can only answer with 1, 2, 3, or 4. \n\n{scenario} {question}\n\
+      \n{options}\n\nAnswer:"
+    question: What meaning is X likely conveying?
+  PLLM(m|c,u):
+    num_order_shuffles: 10
+    prompt_template:
+      "Task: You will read short stories that describe everyday situations\
+      \ and which finish with a character saying something. Your task is to decide,\
+      \ given the situation and what the character has said, what meaning the character\
+      \ is trying to convey. Each story will be followed by 4 possible meaning interpretations\
+      \ listed from 1 to 4. Read each story and choose the number corresponding to\
+      \ the best meaning interpretation. You can only answer with 1, 2, 3, or 4. \n\
+      \n{scenario} {question}\n\n{options}\n\nAnswer:"
+    question: What meaning is X trying to convey?
+  PLLM(m|c,u,r):
+    num_order_shuffles: 10
+    prompt_template:
+      "Task: You will read short stories that describe everyday situations\
+      \ and which finish with a character saying something. Your task is to decide,\
+      \ given the situation and what the character has said, what meaning the character\
+      \ is trying to convey. Each story will be followed by 4 possible meaning interpretations\
+      \ listed from 1 to 4. Read each story and choose the number corresponding to\
+      \ the best meaning interpretation. You can only answer with 1, 2, 3, or 4. {rhetorical_strategy_instruction}\
+      \ \n\n{scenario} {question}\n\n{options}\n\nAnswer:"
+    question: What meaning is X trying to convey?
+    rhetorical_strategy_instructions:
+      Ironic:
+        In addition, when choosing the intended meaning, assume that the character
+        is not being sincere. Assume they are saying the opposite of what they want
+        to convey for an ironic effect given the context. For instance, if they say
+        "The weather is terrible." then they actually mean that the weather is amazing.
+        Similarly, if they say "The weather is amazing." then they actually mean that
+        the weather is terrible.
+      Sincere:
+        Assume that the character is being sincere and is saying exactly what
+        they want to convey. Take their utterance literally when choosing the character's
+        true intended meaning **even if** it contradicts the context. For instance,
+        if it's a sunny day and the character says "The weather is terrible." then
+        they do actually mean that the weather is terrible. Similarly, if it's a rainy
+        day and the character says "The weather is amazing." then they do actually
+        mean that the weather is amazing.
+  PLLM(r|c,u):
+    num_order_shuffles: 2
+    prompt_options:
+      Ironic: '"Not Sincere"'
+      Sincere: '"Sincere"'
+    prompt_template:
+      "Task: You will read short stories that describe everyday situations\
+      \ and which finish with a character saying something. Your task is to decide,\
+      \ given the situation and what the character has said, whether the character\
+      \ in the story is being \"Sincere\" or \"Not Sincere\". A character is \"Sincere\"\
+      \ if what they are saying is consistent with the context of the story. For instance,\
+      \ if the weather outside is sunny then a \"Sincere\" utterance might be \"The\
+      \ weather outside is amazing.\" Likewise, if the weather outside is rainy then\
+      \ a \"Sincere\" utterance might be \"The weather is terrible.\" In contrast,\
+      \ a character is \"Not Sincere\" if they are saying something that contradicts\
+      \ the context of the story. For instance, if the weather outside is rainy then\
+      \ a \"Not Sincere\" utterance might be \"The weather outside is amazing.\" Similarly,\
+      \ if the weather outside is sunny then a \"Not Sincere\" utterance might be\
+      \ \"The weather outside is terrible.\" The answer options are 1 or 2. \n\n{scenario}\
+      \ {question}\n\n{options}\n\nAnswer:"
+    question: Was X being "Sincere" or "Not Sincere"?
+log_experiment: true
+keys_to_log:
+  - run_type
+  - dataset_path
+  - probs_to_compute
+cache_dir: camera_ready_outputs/prag_mega_plus_exps/cache
+output_dir: camera_ready_outputs/prag_mega_plus_exps/mistral_7b_instruct

@@ -1,0 +1,21 @@
+hydra: # TODO: Replace with $HOME variable
+  sweep:
+    dir: /home/mila/c/cesare.spinoso/SarcRSA/datasets/hydra
+    subdir: ${hydra.job.override_dirname}
+  output_subdir: ${hydra.sweep.dir}/${hydra.sweep.subdir}
+run_type: generate_utterance_probs
+dataset_name: prag_mega_test_split
+dataset_path: src/data/prag_mega/ScenariosCombinedDiversified.csv
+is_context_w_something: True
+seed: 42
+alternative_utterances_path: null # NOTE: The gen_llm should match with the LLM used to generate the alternative utterances
+llm_prompt_probs_path: null
+gen_llm: null
+log_experiment: true
+keys_to_log:
+  - run_type
+  - dataset_path
+  - alternative_utterances_path
+  - gen_llm
+cache_dir: camera_ready_outputs/prag_mega_plus_exps/cache
+output_dir: camera_ready_outputs/prag_mega_plus_exps/
