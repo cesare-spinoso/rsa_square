@@ -1,0 +1,6 @@
+data/exp_data filter=lfs diff=lfs merge=lfs -text
+data/ironic_weather_utterances_exps filter=lfs diff=lfs merge=lfs -text
+data/nonliteral_number_exps filter=lfs diff=lfs merge=lfs -text
+data/prag_mega_plus_exps filter=lfs diff=lfs merge=lfs -text
+data/README.md filter=lfs diff=lfs merge=lfs -text
+data/** filter=lfs diff=lfs merge=lfs -text
