@@ -1,7 +1,6 @@
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from src import CACHE_DIR, HF_TOKEN
 from src.utils.helpers import seed_everything
 
 
@@ -16,11 +15,9 @@ class BaseLLM:
             self.model_id,
             torch_dtype=torch.bfloat16,
             device_map="auto",
-            token=HF_TOKEN,
-            cache_dir=CACHE_DIR,
         )
         self.tokenizer = AutoTokenizer.from_pretrained(
-            self.model_id, token=HF_TOKEN, cache_dir=CACHE_DIR
+            self.model_id,
         )
 
         # Convert to left padding if necessary

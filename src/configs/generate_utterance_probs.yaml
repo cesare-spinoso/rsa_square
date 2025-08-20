@@ -5,7 +5,7 @@ hydra: # TODO: Replace with $HOME variable
   output_subdir: ${hydra.sweep.dir}/${hydra.sweep.subdir}
 run_type: generate_utterance_probs
 dataset_name: prag_mega_test_split
-dataset_path: src/data/prag_mega/ScenariosCombinedDiversified.csv
+dataset_path: data/exp_data/prag_mega_plus/ScenariosCombinedDiversified.csv
 is_context_w_something: True
 seed: 42
 alternative_utterances_path: null # NOTE: The gen_llm should match with the LLM used to generate the alternative utterances
@@ -17,5 +17,5 @@ keys_to_log:
   - dataset_path
   - alternative_utterances_path
   - gen_llm
-cache_dir: camera_ready_outputs/prag_mega_plus_exps/cache
-output_dir: camera_ready_outputs/prag_mega_plus_exps/
+cache_dir: data/prag_mega_plus_exps/cache
+output_dir: data/prag_mega_plus_exps/

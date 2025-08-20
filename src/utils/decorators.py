@@ -2,22 +2,16 @@ from ast import literal_eval
 import fcntl
 import json
 import os
-import time
 from datetime import datetime
 import warnings
 
 import jsonlines
 from omegaconf import DictConfig, OmegaConf
 
-from src import REPO_LOG_FILE, REPO_EXP_YAML, REPO_PATH
+from src import REPO_PATH, REPO_LOG_FILE
 from src.llms.base_llm import BaseLLM
 from src.utils.helpers import (
-    append_jsonlines,
     read_jsonlines,
-    read_yaml,
-    read_json,
-    write_json,
-    write_jsonlines,
     write_yaml,
 )
 
@@ -81,26 +75,6 @@ def log_run(func):
                     REPO_PATH, config["output_dir"], "config.yaml"
                 ),
             )
-        # Log all relevant information to the experiments file
-        # NOTE: This sometimes leads to bugs because of forgetting/
-        # not setting the right key - Fix for future use
-        # if config.get("log_experiment", False):
-        #     experiments_tracking = read_yaml(REPO_EXP_YAML)
-        #     experiments_tracking[start_time] = {
-        #         "dir_path": os.path.join(REPO_PATH, config["output_dir"]),
-        #         "config_path": os.path.join(REPO_PATH, config["output_dir"], "config.yaml"),
-        #         "output_file_path": (
-        #             os.path.join(REPO_PATH, config["output_dir"], config["output_file"])
-        #             if "output_file" in config
-        #             else None
-        #         ),
-        #         "keys_to_log": (
-        #             {k: config[k] for k in config["keys_to_log"]}
-        #             if "keys_to_log" in config
-        #             else None
-        #         ),
-        #     }
-        #     write_yaml(yaml_contents=experiments_tracking, yaml_file_path=REPO_EXP_YAML)
 
     return wrapper
 

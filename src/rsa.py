@@ -12,7 +12,7 @@ from sentence_transformers import SentenceTransformer
 from sklearn.cluster import KMeans
 from tqdm import tqdm
 
-from src import MODEL_CACHE, REPO_PATH
+from src import REPO_PATH
 from src.utils.decorators import log_run
 from src.utils.helpers import (
     append_jsonlines,
@@ -831,7 +831,6 @@ def rsa(config: dict) -> list[dict]:
             embedding_model = SentenceTransformer(
                 embedding_model,
                 trust_remote_code=True,
-                cache_folder=MODEL_CACHE,
             )
     for elt in tqdm(llm_probs):
         for rsa_config in config["rsa_runs"]:

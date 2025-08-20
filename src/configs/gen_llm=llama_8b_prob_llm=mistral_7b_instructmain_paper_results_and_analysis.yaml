@@ -1,8 +1,8 @@
-output_dir: camera_ready_outputs/prag_mega_plus_exps/results_and_analysis/gen_llm=llama_8b_prob_llm=mistral_7b_instructmain_paper
+output_dir: data/prag_mega_plus_exps/results_and_analysis/gen_llm=llama_8b_prob_llm=mistral_7b_instructmain_paper
 prior_ablations:
-  no_p_m_c: camera_ready_outputs/prag_mega_plus_exps/rsa_runs/gen_llm=llama_8b_prob_llm=mistral_7b_instructmain_paper/no_p_m_c
-  no_p_r_c_u: camera_ready_outputs/prag_mega_plus_exps/rsa_runs/gen_llm=llama_8b_prob_llm=mistral_7b_instructmain_paper/no_p_r_c_u
-  no_p_u_c: camera_ready_outputs/prag_mega_plus_exps/rsa_runs/gen_llm=llama_8b_prob_llm=mistral_7b_instructmain_paper/no_p_u_c
-  unchanged: camera_ready_outputs/prag_mega_plus_exps/rsa_runs/gen_llm=llama_8b_prob_llm=mistral_7b_instructmain_paper/main_run
+  no_p_m_c: data/prag_mega_plus_exps/rsa_runs/gen_llm=llama_8b_prob_llm=mistral_7b_instructmain_paper/no_p_m_c
+  no_p_r_c_u: data/prag_mega_plus_exps/rsa_runs/gen_llm=llama_8b_prob_llm=mistral_7b_instructmain_paper/no_p_r_c_u
+  no_p_u_c: data/prag_mega_plus_exps/rsa_runs/gen_llm=llama_8b_prob_llm=mistral_7b_instructmain_paper/no_p_u_c
+  unchanged: data/prag_mega_plus_exps/rsa_runs/gen_llm=llama_8b_prob_llm=mistral_7b_instructmain_paper/main_run
 rsa_runs:
-  gen_llm=llama_8b_prob_llm=mistral_7b_instructmain_paper: camera_ready_outputs/prag_mega_plus_exps/rsa_runs/gen_llm=llama_8b_prob_llm=mistral_7b_instructmain_paper/main_run
+  gen_llm=llama_8b_prob_llm=mistral_7b_instructmain_paper: data/prag_mega_plus_exps/rsa_runs/gen_llm=llama_8b_prob_llm=mistral_7b_instructmain_paper/main_run

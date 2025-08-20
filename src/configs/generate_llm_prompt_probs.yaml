@@ -5,7 +5,7 @@ hydra: # TODO: Replace with $HOME variable
   output_subdir: ${hydra.sweep.dir}/${hydra.sweep.subdir}
 run_type: generate_llm_prompt_probs
 dataset_name: prag_mega_test_split
-dataset_path: src/data/prag_mega/ScenariosCombinedDiversified.csv
+dataset_path: data/exp_data/prag_mega_plus/ScenariosCombinedDiversified.csv
 is_context_w_something: True # See dataset README for more details
 alternative_utterances_path: null
 prob_llm: null
@@ -87,5 +87,5 @@ keys_to_log:
   - run_type
   - dataset_path
   - probs_to_compute
-cache_dir: camera_ready_outputs/prag_mega_plus_exps/cache
-output_dir: camera_ready_outputs/prag_mega_plus_exps/mistral_7b_instruct
+cache_dir: data/prag_mega_plus_exps/cache
+output_dir: data/prag_mega_plus_exps/mistral_7b_instruct

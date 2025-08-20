@@ -1,15 +1,15 @@
-base_config: src/rsa/distractor/configs/camera_ready/main_base_rsa_config.yaml
-this_output_dir: src/rsa/distractor/configs
-results_and_analysis_output_dir: camera_ready_outputs/prag_mega_plus_exps/results_and_analysis
+base_config: src/configs/main_base_rsa_config.yaml
+this_output_dir: src/configs
+results_and_analysis_output_dir: data/prag_mega_plus_exps/results_and_analysis
 gen_llm: llama_8b
 prob_llm: mistral_7b_instruct
 extra_details: main_paper
 base_config_common_keys:
   dataset_name: prag_mega_test_split
-  dataset_path: src/data/prag_mega/ScenariosCombinedDiversified.csv
+  dataset_path: data/exp_data/prag_mega_plus/ScenariosCombinedDiversified.csv
   alt_utterances_path: null
   llm_probs_path: null
-  output_dir: camera_ready_outputs/prag_mega_plus_exps/rsa_runs
+  output_dir: data/prag_mega_plus_exps/rsa_runs
 prior_ablations:
   - unchanged
   - no_p_m_c

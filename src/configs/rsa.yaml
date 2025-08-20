@@ -5,7 +5,7 @@ hydra: # this actually works
   output_subdir: ${hydra.sweep.dir}/${hydra.sweep.subdir}
 run_type: run_all_rsa_versions
 dataset_name: prag_mega
-dataset_path: src/data/prag_mega/ScenariosCombinedDiversified.csv
+dataset_path: data/exp_data/prag_mega_plus/ScenariosCombinedDiversified.csv
 alt_utterances_path: null
 llm_probs_path: null
 seed: 42
@@ -48,4 +48,4 @@ rsa_runs:
       prior_utterance: P_u_c
       prior_rs: P_r_c_u
       n: 1
-output_dir: camera_ready_outputs/prag_mega_plus_exps/rsa_runs
+output_dir: data/prag_mega_plus_exps/rsa_runs
